@@ -5,10 +5,9 @@ module Main where
 
 import System.Process.Typed
 import System.Directory
-import System.FilePath
 import System.Exit (exitSuccess)
 import Text.Regex.Posix
-import Data.Text (unpack, Text)
+import Data.Text (Text)
 import qualified Data.Text.IO as T
 import Data.Text.Encoding (decodeUtf8, encodeUtf8)
 import Data.ByteString.Lazy (toStrict, ByteString)
@@ -21,12 +20,11 @@ second n "" = do
       second n (decodeUtf8 . toStrict $ str)
 second n str
   | encodeUtf8 str =~ ("Up to date" :: ByteString) = do
-      l <- listDirectory "."
-      str <- catch (readFile ".cabal-lint") $ \(e :: IOError) -> do
+      previous <- catch (readFile ".cabal-lint") $ \(_ :: IOError) -> do
         runProcess_ $ proc "cabal" ["clean"]
         second n ""
         exitSuccess
-      putStrLn str
+      putStrLn previous
   | encodeUtf8 str =~ ("No cabal.project file" :: ByteString) = do
       setCurrentDirectory ".."
       second (n - 1) ""

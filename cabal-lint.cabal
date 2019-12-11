@@ -22,3 +22,4 @@ executable cabal-lint
                        directory,
                        filepath
   default-language:    Haskell2010
+  ghc-options:         -Wall

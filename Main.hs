@@ -37,5 +37,4 @@ second n str
 main :: IO ()
 main = do
   path <- getCurrentDirectory
-  print $ (1+ length (filter (=='/') path))
   second (1 + length (filter (=='/') path)) ""

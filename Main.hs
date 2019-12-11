@@ -3,10 +3,10 @@
 
 module Main where
 
-import System.Process.Typed
-import System.Directory
+import System.Process.Typed (readProcessInterleaved, runProcess_, proc)
+import System.Directory (getCurrentDirectory, setCurrentDirectory)
 import System.Exit (exitSuccess)
-import Text.Regex.Posix
+import Text.Regex.Posix ((=~))
 import Data.Text (Text)
 import qualified Data.Text.IO as T
 import Data.Text.Encoding (decodeUtf8, encodeUtf8)

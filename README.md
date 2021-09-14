@@ -1,5 +1,4 @@
-cabal-lint
-==========
+# DEPRECATED please use [haskell-language-server](https://github.com/haskell/haskell-language-server) with [coc.nvim](https://github.com/neoclide/coc.nvim)
 
 Introduction
 ------------
